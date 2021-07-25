@@ -1,0 +1,7 @@
+# Task 1 Responses:
+# 1. The total number of prefixes and ASes are increasing in paralell over time. The rate of growth for both prefixes and ASes appears to be steady and consistiently linear. From 2018, it appears that both graphs are beginning to reflect an exponential growth pattern.
+
+# 2. To solve this challenge, I calculated the average number of unique prefixes across OriginAses in an epoch. I computed this metric for all years from 2013-2021. The findings showed the following: [(2013, 10.50), (2014, 10.89), (2015, 11.03), (2016, 11.57), (2017, 12.04), (2018, 12.33), (2019, 12.95), (2020, 13.25), (2021, 13.47)]. I have discovered that the majority of origin ASes have an increased number of total unique advertized prefixes over time.
+
+# 3.   
+###
