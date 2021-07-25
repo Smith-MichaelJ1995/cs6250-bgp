@@ -1,7 +1,17 @@
 # Task 1 Responses:
 # 1. The total number of prefixes and ASes are increasing in paralell over time. The rate of growth for both prefixes and ASes appears to be steady and consistiently linear. From 2018, it appears that both graphs are beginning to reflect an exponential growth pattern.
 
-# 2. To solve this challenge, I calculated the average number of unique prefixes across OriginAses in an epoch. I computed this metric for all years from 2013-2021. The findings showed the following: [(2013, 10.50), (2014, 10.89), (2015, 11.03), (2016, 11.57), (2017, 12.04), (2018, 12.33), (2019, 12.95), (2020, 13.25), (2021, 13.47)]. I have discovered that the majority of origin ASes have an increased number of total unique advertized prefixes over time.
+# 2. To solve this challenge, I calculated the average number of unique prefixes across OriginAses in an epoch. I computed this metric for all years from 2013-2021. The findings showed the following: [(2013, 10.51), (2014, 10.91), (2015, 11.06), (2016, 11.60), (2017, 12.07), (2018, 12.36), (2019, 12.98), (2020, 13.28), (2021, 13.50)]. I have discovered that the majority of origin ASes have an increased number of total unique advertized prefixes over time.
 
-# 3.   
+# 3. The top 10 origin ASes with the highest percentage increase over time are as follows:
+	1. 'originAs': '26484', 'pct-change': 180100.0,
+	2. 'originAs': '21859', 'pct-change': 82400.0
+	3. 'originAs': '132203', 'pct-change': 78500.0
+	4. 'originAs': '62240', 'pct-change': 76400.0,
+	5. 'originAs': '35913', 'pct-change': 75000.0
+	6. 'originAs': '134705', 'pct-change': 61600.0,
+	7. 'originAs': '47331', 'pct-change': 52183.333333333336, 
+	8. 'originAs': '58952', 'pct-change': 30400.0,
+	9. 'originAs': '23470', 'pct-change': 30200.0,
+	10. 'originAs': '48695', 'pct-change': 30200.0
 ###

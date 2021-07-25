@@ -4,7 +4,7 @@ import json
 
 # read in files from filesystem
 def read_from_filesystem():
-   with open('task1partB-results.json', 'r') as f:
+   with open('task1-results.json', 'r') as f:
       return f.read()
 		
 # ave unique prefixes by year

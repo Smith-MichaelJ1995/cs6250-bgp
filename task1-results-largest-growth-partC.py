@@ -4,7 +4,7 @@ import json
 
 # read in files from filesystem
 def read_from_filesystem():
-   with open('task1partB-results.json', 'r') as f:
+   with open('task1-results.json', 'r') as f:
       return f.read()
 		
 # ave unique prefixes by year
@@ -33,34 +33,42 @@ for epoch in chronologicallySortedKeys:
 # filter for OriginAs duplicates, we must have unique values
 universeOriginAses = list(set(universeOriginAses))
 
-print(universeOriginAses)
-exit()
+# remove empty string character
+print("total universeOriginAses = {}".format(len(universeOriginAses)))
+input("Press Enter..")
 
 # now that we have all unique originAses (across entire timespan 2013-2021), find percent raise for each
-for originAs in universeOriginAses:
+for index, originAs in enumerate(universeOriginAses):
 
-   # create placeholder for start epoch
-   startUniquePrefixes = 0
-   endUniquePrefixes = 0
+   if index != 0:
+
+      # notate the originAs we're processing
+      print("index = {}, originAs = {}".format(index, originAs))
+      print("originAs = {}".format(originAs))
+
+      # create placeholder for start epoch
+      startUniquePrefixesCount = 0
+      endUniquePrefixesCount = 0
    
-   #find first appearance for this epoch
-   for epoch in chronologicallySortedKeys:
-      if originAs in results[epoch]["originAses"].keys():
-         startUniquePrefixesCount = len(results[epoch]["originAses"][originAs])
-         break
+      #find first appearance for this epoch
+      for epoch in chronologicallySortedKeys:
+         if originAs in results[epoch]["originAses"].keys():
+            startUniquePrefixesCount = len(results[epoch]["originAses"][originAs])
+            break
    
-   #find the last appearance for this epoch 
-   for epoch in reverseChronologicallySortedKeys:
-      if originAs in results[epoch]["originAses"].keys():
-         endUniquePrefixes = len(results[epoch]["originAses"][originAs])
-         break
-         
-   # calculate percent change
-   changeInPrefixes = endUniquePrefixes - startUniquePrefixes
-   totalPercentageIncrease = (changeInPrefixes / startUniquePrefixes) * 100
+      #find the last appearance for this epoch 
+      for epoch in reverseChronologicallySortedKeys:
+         if originAs in results[epoch]["originAses"].keys():
+            endUniquePrefixesCount = len(results[epoch]["originAses"][originAs])
+            break
+      
+      # calculate percent change
+      changeInPrefixes = endUniquePrefixesCount - startUniquePrefixesCount
+      totalPercentageIncrease = (changeInPrefixes / startUniquePrefixesCount) * 100
+      #print("total % increase = {}".format(totalPercentageIncrease))
    
-   # save results to new placeholder
-   universeOriginAsesWithChangeTotals.append({"originAs": originAs, "pct-change": totalPercentageIncrease})
+      # save results to new placeholder
+      universeOriginAsesWithChangeTotals.append({"originAs": originAs, "pct-change": totalPercentageIncrease})
 
 # show resulting originAses with highest percentage change
 print(sorted(universeOriginAsesWithChangeTotals, key = lambda item: item['pct-change'], reverse=True))

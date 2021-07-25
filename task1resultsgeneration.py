@@ -61,6 +61,9 @@ def generate_results():
             # append origins back to list
             ases.extend(origin)
             
+            # hold right-most origin value
+            origin = origin[-1]
+            
             print("re-formatted origin = {}".format(origin))
             print("re-formatted ases = {}".format(ases))
             print("")

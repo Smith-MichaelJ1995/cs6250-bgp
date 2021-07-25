@@ -7,12 +7,8 @@ from matplotlib import pyplot as plt
 			
 	
 def read_from_filesystem():
-	with open('task1partA-results.json', 'r') as f:
+	with open('task1-results.json', 'r') as f:
 		return f.read()
-
-def write_to_filesystem():
-	with open('task1partA-results.json', 'w') as fp:
-		json.dump(results, fp)
 		
 def build_plotlib_chart(results, key, title, xlabel, ylabel):
 	
