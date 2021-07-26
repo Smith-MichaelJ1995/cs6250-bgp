@@ -4,6 +4,7 @@ import os
 import datetime
 import json
 import numpy
+import operator
 from matplotlib import pyplot as plt
 from statsmodels.distributions.empirical_distribution import ECDF 
 
@@ -99,34 +100,74 @@ def generate_results():
 #results = generate_results()
 #write_to_filesystem(results)
 
-results = json.loads(read_from_filesystem())
+# plot graph
+#def plot_part_two_graph():
+#	results = json.loads(read_from_filesystem())
+#	years = ["2013","2014","2015","2016","2017","2018","2019","2020","2021"]
+#	plots = []
+	
+	# traverse through all timestamps in sequential order
+#	for stamp in sorted(results.keys()):
+   	
+   		# fetch all path lengths for each as
+   		# asOrigins = list(results[stamp]["originAses"].keys())
+ ##  		asPathLengths = list(results[stamp]["originAses"].values())
+   		
+   		# instantiate ecdf object
+ #  		ecdf = ECDF(asPathLengths)
+   		
+   		# configure this plot data
+#  		plotObject, = plt.plot(ecdf.x, ecdf.y, lw = 2)
+   		
+   		# append plot object for future use
+#   		plots.append(plotObject)
+   		
+#		# generate plot
+#		plt.legend(plots, years)
+#		plt.xlabel("Shortest Path Length", size=14)
+#		plt.ylabel("Prob", size = 14)
+   	
+   	# print plot
+#	plt.show()
+
+
 years = ["2013","2014","2015","2016","2017","2018","2019","2020","2021"]
-plots = []
+   	
+# invoke function, generate results, stage to filesystem	
+results = json.loads(read_from_filesystem())
 
-# traverse through all timestamps in sequential order
-for stamp in sorted(results.keys()):
+# traverse through all keys
+for stamp, year in zip(sorted(results.keys()), years):
    
-   # fetch all path lengths for each as
-   # asOrigins = list(results[stamp]["originAses"].keys())
-   asPathLengths = list(results[stamp]["originAses"].values())
+   # fetch originAses
+   asPathLengths = results[stamp]["originAses"]
    
-   # instantiate ecdf object
-   ecdf = ECDF(asPathLengths)
+   # path lengths
+   topFiveResults = dict(sorted(asPathLengths.items(), key=operator.itemgetter(1), reverse=True)[:5])
    
-   # configure this plot data
-   plotObject, = plt.plot(ecdf.x, ecdf.y, lw = 2)
+   print("processing year: {}".format(year))
+   print(topFiveResults)
+   input("Waiting...")
    
-   # append plot object for future use
-   plots.append(plotObject)
+   # traverse through top five results
+   #for originAs, pathLength in topFiveResults:
+      
+      #print("originAs = {}".format(originAs))
+      #print("pathLength = {}".format(pathLength))
+      
+   print("")
+   # traverse through all objects
+   #topValues = asPathLengths.values()
+   #topValues = sorted(topValues, reverse=True)
+   #topFive = [
+      
    
-# generate plot
-plt.legend(plots, years)
-plt.xlabel("Shortest Path Length", size=14)
-plt.ylabel("Prob", size = 14)
+   #]
    
-# print plot
-plt.show()
-
+   #print(topValues)
+   #exit()
+      
+	
 
    
    

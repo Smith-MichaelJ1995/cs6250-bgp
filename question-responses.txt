@@ -15,3 +15,9 @@
 	9. 'originAs': '23470', 'pct-change': 30200.0,
 	10. 'originAs': '48695', 'pct-change': 30200.0
 ###
+
+# Task Two Responses:
+# 1. I have noticed that AS Path Lengths are increasing over time. 
+ have noticed that AS Path Lengths are increasing over time. The probabilities of reciving very large paths for the most recent years (2016, 2018, 2021) are essentially guarenteed to recieve path lengths of at least 5-10 hops. For 2013 & 2014,the longest path lengths are about 5 hops. In 2015, we begin the trend of increases.. this to about 7.5 hops. 
+ 
+# 2. 
