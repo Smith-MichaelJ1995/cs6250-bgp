@@ -3,12 +3,14 @@ import pybgpstream
 import os
 import datetime
 import json
+import numpy
 from matplotlib import pyplot as plt
+from statsmodels.distributions.empirical_distribution import ECDF 
 
 
 # read in files from filesystem
 def read_from_filesystem():
-   with open('task1-results.json', 'r') as f:
+   with open('task2-results.json', 'r') as f:
       return f.read()
       
 def write_to_filesystem(results):
@@ -27,7 +29,7 @@ def generate_results():
    # iterate through all rib files, create PyStream events
    for rib_file in rib_files:
    
-      print("Processing New File: {}".format(rib_file))
+      #print("Processing New File: {}".format(rib_file))
     	
       # create stream object with provided file
       epoch = rib_file.split(".")[3]
@@ -40,7 +42,7 @@ def generate_results():
       # process stream for prefixes & ASES
       for index, element in enumerate(stream):
     		
-         print("processing index = {}".format(index))
+         #print("processing index = {}".format(index))
     			
          # get the list of ASes in the AS path
          ases = element.fields["as-path"].split(" ")
@@ -69,17 +71,9 @@ def generate_results():
             
             # hold right-most origin value
             origin = origin[-1]
-            
-            #print("re-formatted origin = {}".format(origin))
-            #print("re-formatted ases = {}".format(ases))
-            #print("")
     				
          # filter for unique ases
          ases = list(set(ases))
-         
-         #print("###########")
-         #print("origin = {}".format(origin))		
-         #print("ases = {}".format(ases))
          
          # handle originAses if it's unique
          if origin not in results[epoch]["originAses"].keys():
@@ -102,8 +96,46 @@ def generate_results():
    return results    
 	
 # invoke function, generate results, stage to filesystem	
-results = generate_results()
-write_to_filesystem(results)
+#results = generate_results()
+#write_to_filesystem(results)
+
+results = json.loads(read_from_filesystem())
+years = ["2013","2014","2015","2016","2017","2018","2019","2020","2021"]
+plots = []
+
+# traverse through all timestamps in sequential order
+for stamp in sorted(results.keys()):
+   
+   # fetch all path lengths for each as
+   # asOrigins = list(results[stamp]["originAses"].keys())
+   asPathLengths = list(results[stamp]["originAses"].values())
+   
+   # instantiate ecdf object
+   ecdf = ECDF(asPathLengths)
+   
+   # configure this plot data
+   plotObject, = plt.plot(ecdf.x, ecdf.y, lw = 2)
+   
+   # append plot object for future use
+   plots.append(plotObject)
+   
+# generate plot
+plt.legend(plots, years)
+plt.xlabel("Shortest Path Length", size=14)
+plt.ylabel("Prob", size = 14)
+   
+# print plot
+plt.show()
+
+
+   
+   
+
+
+
+
+
+
    	
 		
 		
