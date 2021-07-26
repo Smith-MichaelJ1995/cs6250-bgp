@@ -9,7 +9,7 @@ def generate_results():
 
    # Replace the contents of this cell with your code for Task 1 part A
    results = {}
-   notebook_path = os.path.abspath("main.py")
+   notebook_path = os.path.abspath("bgpm-1.ipynb")
    rib_files_directory_path = os.path.join(os.path.dirname(notebook_path), "rib_files")
    rib_files = os.listdir(rib_files_directory_path)
 	
